@@ -1,3 +1,15 @@
+# 🧩 Section 1: JavaScript Basics
+
+### 📚 Topics Covered
+- Variables and Data Types  
+- Type Conversion & Operators  
+- Strings  
+- Numbers & Math  
+- Date & Time  
+- Mini Quizzes  
+
+---
+
 # 📘 Why Do We Write Files in `.js` and Not `.txt`?
 
 ### ❓ Question
