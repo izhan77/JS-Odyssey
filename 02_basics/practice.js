@@ -1,101 +1,142 @@
-// const items = ["apple", "orange", "banana", "mango", "peach"];
+const users = [
+  { id: 1, name: "John", age: 25, active: true },
+  { id: 2, name: "Jane", age: 17, active: true },
+  { id: 3, name: "Bob", age: 30, active: false },
+  { id: 4, name: "Alice", age: 22, active: true },
+];
 
-// items.push("kiwi")
-// items.unshift("watermelon")
-// items.pop()
-// items.shift()
-// console.log("Index : ", items.indexOf("peach"))
-// const slicedArray = items.slice(1,4);
-// const splicedArray = items.splice(2,3)
+// Get: Array of names of active users who are 18 or older
 
-// console.table(items)
-// console.log("Sliced Array")
-// console.table(slicedArray)
-// console.log("Spliced Array")
-// console.table(splicedArray)
-// console.table(items)
-// items.push("dates")
-// console.table(items)
+const userNames = users.filter(
+  (user) => user.active === true && user.age >= 18
+);
 
+console.log(userNames);
 
-// const array = [3,2,8,6,5,7,4];
+/*--------------------------------------*/
 
-// const reverseArray = [];
+const transactions = [
+  { id: 1, amount: 150, type: "debit" },
+  { id: 2, amount: 200, type: "credit" },
+  { id: 3, amount: 50, type: "debit" },
+  { id: 4, amount: 300, type: "credit" },
+];
 
-// for (let i = array.length-1; i >= 0; i--) {
-//      reverseArray.push(array[i]);
-// }
+// Calculate: Total credit, total debit, and net balance
 
-// let maxNum = array[0];
+const totalCredit = transactions.reduce((acc, transaction) => {
+  if (transaction.type === "credit") {
+    acc += transaction.amount;
+  }
+  return acc;
+}, 0);
 
-// for (let i = 0; i < array.length; i++) {
-//     if (array[i] > maxNum){
-//         maxNum = array[i];
-//     }
-// }
+console.log(`Total Credit: ${totalCredit}`);
 
-// const string = "izhan";
-// const charString = [...string];
+const totalDebit = transactions.reduce((acc, transaction) => {
+  if (transaction.type === "debit") {
+    acc += transaction.amount;
+  }
+  return acc;
+}, 0);
 
-// console.log(reverseArray)
-// console.log("Maximum number : ", maxNum)
-// console.log(charString)
+console.log(`Total Debit: ${totalDebit}`);
+console.log(`Net Balance: ${totalCredit - totalDebit}`);
 
-// const vowels = [];
+/*--------------------------------------*/
 
-// for (let i = 0; i < charString.length; i++) {
-//     if (charString[i] === 'a' || charString[i] === 'e' || charString[i] === 'i' || charString[i] === 'o' || charString[i] === 'u'){
-//         vowels.push(charString[i]);
-//     }
-// }
+const departments = [
+  {
+    name: "Engineering",
+    employees: [
+      { name: "John", salary: 50000 },
+      { name: "Jane", salary: 60000 },
+    ],
+  },
+  {
+    name: "Marketing",
+    employees: [
+      { name: "Bob", salary: 45000 },
+      { name: "Alice", salary: 55000 },
+    ],
+  },
+];
 
-// console.log(vowels);
+// Get: Array of all employee names with their department
 
-// const array = [3,2,8,6,3,5,7,4];
+const departmentData = departments.map((department) => {
+    return {
+    'Department Name': department.name,
+    'Employees': department.employees.map((employee) => employee.name)
+    }
+})
 
-// const nonDuplicatedArray = [];
-// let duplicate = true;
+console.log(departmentData)
 
-// for (let i = 0; i < array.length; i++) {
-//     const element1 = array[i];
-//     for (let j = 1; j < array.length; j++) {
-//         const element2 = array[j];
-//         if (element1 === element2){
-//             duplicate = false;
-//         }
-//     }
+/*--------------------------------------*/
 
-//     if (!duplicate){
-//         nonDuplicatedArray.push(element1);
-//     }
-// }
+const orders = [
+  { customer: "John", items: ["book", "pen"], total: 25 },
+  { customer: "Jane", items: ["notebook"], total: 15 },
+  { customer: "John", items: ["pencil", "eraser"], total: 10 },
+  { customer: "Bob", items: ["book", "ruler"], total: 30 }
+];
 
-// console.log(nonDuplicatedArray);
+// Create: Object with customer names as keys and their total spending as values
 
-// const array = [3,2,8,8,6,3,5,7,4];
+const customers = orders.reduce((acc,order) => {
+    acc[order.customer] = (acc[order.customer] || 0) + order.total;
+    return acc;
+}, {})
 
-// const nonDuplicatedArray = array.reduce((acc,item) => {
-//     if (!acc.includes(item)) acc.push(item);
-//     return acc;
-// }, []);
+console.log(customers)
 
-// console.log(nonDuplicatedArray)
+/*--------------------------------------*/
 
-// let largest = array[0];
-// let secondLargest = array[0];
+const matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
 
-// for (let i = 0; i < array.length; i++) {
-//     if (array[i] > largest){
-//         largest = array[i];
-//     }    
-// }
+// Tasks:
+// - Transpose the matrix (rows become columns)
+// - Calculate sum of each row
+// - Calculate sum of each column
 
-// for (let i = 0; i < array.length; i++) {
-//     if (array[i] > secondLargest && array[i] !== largest){
-//         secondLargest = array[i];
-//     }
-    
-// }
+/*--------------------------------------*/
 
-// console.log(largest)
-// console.log(secondLargest)
+const students = [
+  { name: "John", grades: [85, 90, 78], attendance: 0.9 },
+  { name: "Jane", grades: [92, 88, 95], attendance: 0.8 },
+  { name: "Bob", grades: [70, 75, 80], attendance: 0.95 }
+];
+
+// Calculate for each student:
+// - Average grade
+// - Final score (average grade * attendance)
+// - Pass/Fail (pass if final score >= 80)
+
+const averageGrade = students.map((student) => {
+    const length = student.grades.length;
+    const totalGrades = student.grades.reduce((sum,grade) => {
+        sum += grade;
+        return sum;
+    }, 0)
+
+    const avg = totalGrades/length;
+    const finalScore = avg * student.attendance
+
+    return {
+        [student.name]: `Average Grade: ${avg.toFixed(1)}`,
+        Final_Score: finalScore.toFixed(1),
+        'Status': finalScore >= 80 ? 'Pass' : 'Fail'
+    }
+})
+
+console.log(averageGrade)
+
+// Also find:
+// - Class average
+// - Top performing student
+// - Students who need improvement
