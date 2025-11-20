@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM - Two</title>
+  </head>
+  <body style="background-color: #414141; color: white">
+    <h2>Amazing Images</h2>
+    <ul id="images">
+      <li>
+        <img
+          id="mountain"
+          width="200px"
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4"
+          alt="Mountain Landscape"
+        />
+        <div class="image-caption">Mountain Landscape</div>
+      </li>
+      <li>
+        <img
+          id="forest"
+          width="200px"
+          src="https://images.unsplash.com/photo-1469474968028-56623f02e42e"
+          alt="Forest Path"
+        />
+        <div class="image-caption">Forest Path</div>
+      </li>
+      <li>
+        <img
+          id="sunset"
+          width="200px"
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+          alt="Ocean Sunset"
+        />
+        <div class="image-caption">Ocean Sunset</div>
+      </li>
+      <li>
+        <img
+          id="desert"
+          width="200px"
+          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+          alt="Desert Dunes"
+        />
+        <div class="image-caption">Desert Dunes</div>
+      </li>
+      <li>
+        <img
+          id="city"
+          width="200px"
+          src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131"
+          alt="City Lights"
+        />
+        <div class="image-caption">City Lights</div>
+      </li>
+      <li>
+        <img
+          id="beach"
+          width="200px"
+          src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
+          alt="Tropical Beach"
+        />
+        <div class="image-caption">Tropical Beach</div>
+      </li>
+      <li>
+        <a style="color: aliceblue" href="https://google.com" id="google"
+          >Google</a
+        >
+      </li>
+    </ul>
+  </body>
+  <script>
+    // Every code in Javascript all the events they run sequentially although there are some exceptions
+
+    // Like Async or Browser Events
+
+    // document.getElementById('forest').onclick = () => {
+    //     alert('forest clicked');
+    // }
+
+    // but there are also some problems if we try to inject JS directly into HTML or using .onclick event after getting document.getElementy by ID like there can be bugs and using this approach we are not able to get whole info about a particular event or element in short words this onlclcik gives very short features - and there fore many recommend to use event listeners bcz event listerners also give propogation ability
+
+    // attachEvent()
+    // jQuery - onEventListener
+
+    // Events to study
+    // type, timestamp, preventDefault, 
+    // target, toElement, srcElement, currentTarget
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode 
+
+    // document.getElementById("images").addEventListener(
+    //   "click",
+    //   function (event) {
+    //     console.log("Clickend inside the ul");
+    //   }, false);
+
+    // document.getElementById("forest").addEventListener(
+    //   "click",
+    //   function (event) {
+    //     console.log("Forest clicked");
+    //     event.stopPropagation();
+    //   }, false);
+
+    // Event bubbling and Event Capturing
+
+    // By default event propogation is basically event bubbling
+
+    /*
+
+    PointerEvent {isTrusted: true, pointerId: 2, width: 1, height: 1, pressure: 0, …}
+isTrusted
+: 
+true
+altKey
+: 
+false
+altitudeAngle
+: 
+1.5707963267948966
+azimuthAngle
+: 
+0
+bubbles
+: 
+true
+button
+: 
+0
+buttons
+: 
+0
+cancelBubble
+: 
+false
+cancelable
+: 
+true
+clientX
+: 
+140
+clientY
+: 
+304
+composed
+: 
+true
+ctrlKey
+: 
+false
+currentTarget
+: 
+null
+defaultPrevented
+: 
+false
+detail
+: 
+1
+eventPhase
+: 
+0
+fromElement
+: 
+null
+height
+: 
+1
+isPrimary
+: 
+false
+layerX
+: 
+140
+layerY
+: 
+304
+metaKey
+: 
+false
+movementX
+: 
+0
+movementY
+: 
+0
+offsetX
+: 
+93
+offsetY
+: 
+70
+pageX
+: 
+140
+pageY
+: 
+304
+persistentDeviceId
+: 
+0
+pointerId
+: 
+2
+pointerType
+: 
+"touch"
+pressure
+: 
+0
+relatedTarget
+: 
+null
+returnValue
+: 
+true
+screenX
+: 
+163
+screenY
+: 
+464
+shiftKey
+: 
+false
+sourceCapabilities
+: 
+InputDeviceCapabilities {firesTouchEvents: true}
+srcElement
+: 
+img#forest
+tangentialPressure
+: 
+0
+target
+: 
+img#forest
+tiltX
+: 
+0
+tiltY
+: 
+0
+timeStamp
+: 
+3059.599999964237
+toElement
+: 
+null
+twist
+: 
+0
+type
+: 
+"click"
+view
+: 
+Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+which
+: 
+1
+width
+: 
+1
+x
+: 
+140
+y
+: 
+304
+[[Prototype]]
+: 
+PointerEvent
+
+    */
+    // propogation
+
+    //   document.getElementById('google').addEventListener('click', (e) => {
+    //       e.preventDefault();
+    //       e.stopPropagation();
+    //     console.log("google clicked")
+    //   }, false)
+
+    document.querySelector('#images').addEventListener('click', (e) => {
+        // console.log(e.target.parentNode);
+        // console.log(e.target.tagName);
+
+        if (e.target.tagName === 'IMG'){
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode;
+            removeIt.remove();
+        }
+        
+        // removeIt.remove();
+        // removeIt.parentNode.removeChild(removeIt);
+
+    })
+
+  </script>
+</html>

@@ -25,6 +25,21 @@
             <li class="list-item">three</li>
             <li class="list-item">four</li>
         </ul>
+
+        <ul class="language">
+            <li>Javascript</li>
+        </ul>
     </div>
 </body>
+<script>
+    function addLang(lang){
+        const li = document.createElement('li');
+        li.innerHTML = `${lang}`;
+        document.querySelector('.language').appendChild(li);
+    }
+
+    addLang('Python');
+    addLang('HTML');
+
+</script>
 </html>
