@@ -3,49 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To Do List</title>
+    <title>Todo list</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <form method="post">
+      <form>
         <input
           type="text"
+          placeholder="Enter your task"
           name="task"
           id="task"
-          placeholder="Enter your task"
         />
-        <div class="taskInfo">
+        <div class="tags-status-btn">
           <div class="tags">
-            <button id="html">HTML</button>
-            <button id="css">CSS</button>
-            <button id="javascript">Javascript</button>
-            <button id="react">React</button>
+            <div class="tag" id="html">HTML</div>
+            <div class="tag" id="css">CSS</div>
+            <div class="tag" id="javascript">Javascript</div>
+            <div class="tag" id="react">React</div>
           </div>
-          <div class="tag">
-            <select class="task_category" name="task_category">
-              <option value="" disabled selected>Select</option>
-              <option value="to_do">To Do</option>
+          <div class="status-btn">
+            <select name="status" id="status">
+              <option selected value="none" disabled>Select</option>
+              <option value="todo">To Do</option>
               <option value="doing">Doing</option>
               <option value="done">Done</option>
             </select>
-            <button id="add_task_button" type="button">Add Task +</button>
+            <button class="add-task-btn">Add Task +</button>
           </div>
         </div>
       </form>
     </header>
+
     <section>
-      <div class="todo">
+      <div class="column todo">
         <h1>To Do</h1>
         
       </div>
-      <div class="doing">
+      <div class="column doing">
         <h1>Doing</h1>
-        
       </div>
-      <div class="done">
+      <div class="column done">
         <h1>Done</h1>
-        
       </div>
     </section>
 

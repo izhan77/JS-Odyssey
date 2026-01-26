@@ -1,163 +1,106 @@
-let tasks = {
-  task: "",
-  tags: [],
-  category: "",
+const task = document.querySelector('#task');
+const tags = document.querySelector('.tags');
+const selectStatus = document.querySelector('#status');
+const addTask = document.querySelector('.add-task-btn');
+let selectedTags = [];
+
+const tagColors = {
+  html: '#FF6500',
+  css: '#5DD3B6',
+  javascript: '#FFD41D',
+  react: '#97A87A'
 };
 
-const task = document.querySelector("#task").addEventListener("input", (e) => {
-  e.preventDefault();
-  tasks.task = e.target.value;
+
+tags.addEventListener('click', function(e){
+  const clickedButton = e.target;
+  const tagID = clickedButton.id;
+  
+  if (selectedTags.includes(tagID)){
+    selectedTags = selectedTags.filter(tag => tag !== tagID);
+    clickedButton.style.backgroundColor = "";
+  } else {
+    selectedTags.push(tagID);
+    clickedButton.style.backgroundColor = tagColors[tagID];
+  }
 });
 
-let tagColor = {
-  HTML: "#FF6C0C",
-  CSS: "#ABE0F0",
-  Javascript: "#FFEE91",
-  React: "#87BAC3",
-};
+addTask.addEventListener('click', function(e){
+  e.preventDefault();
 
-let tagSelected = "";
+  let taskText = task.value.trim();
+  const taskStatus = selectStatus.value;
 
-const tags = document.querySelector(".tags").addEventListener(
-  "click",
-  (e) => {
-    e.preventDefault();
-    tagSelected = e.target;
+  let newTask = {
+    task: taskText,
+    tags: [...selectedTags],
+    status: taskStatus
+  };
 
-    if (tagSelected.style.backgroundColor) {
-      tagSelected.style.backgroundColor = "";
-      tasks.tags = tasks.tags.filter(t => t != e.target.innerText);
-    } else {
-      if (tagColor.hasOwnProperty(e.target.innerText)) {
-        tagSelected.style.backgroundColor = tagColor[e.target.innerText];
-        tasks.tags = [...tasks.tags, e.target.innerText];
-      }
-    }
-    console.log(tasks);
-  },
-  true
-);
+  console.log(newTask);
 
-const category = document
-  .querySelector(".task_category")
-  .addEventListener("change", (e) => {
-    console.log(e.target.value);
-    tasks.category = e.target.value;
+  const allTasks = loadTasksFromLocalStorage();
+  allTasks.push(newTask);
+  saveTaskstoLocalStorage(allTasks);
+
+
+  const taskBox = `
+          <h3>${newTask.task}</h3>
+          <div class="tags-deleteBtn">
+            <div class="tags-container">${newTask.tags.map(tag => 
+              `<span class="tag" style="background-color: ${tagColors[tag]}";>${tag}</span>`
+            ).join('')}</div>
+            <button id="delete-btn">delete</button>
+          </div>
+  `;
+
+  const tempDiv = document.createElement('div');
+  tempDiv.classList.add('task-box')
+  tempDiv.innerHTML = taskBox;
+  const deleteButton = tempDiv.querySelector('#delete-btn');
+
+  const todoColumn = document.querySelector('.column.todo');
+  const doingColumn = document.querySelector('.column.doing');
+  const doneColumn = document.querySelector('.column.done');
+
+  if (newTask.status === "todo"){
+    todoColumn.appendChild(tempDiv);
+  } else if (newTask.status === "doing"){
+    doingColumn.appendChild(tempDiv);
+  } else if (newTask.status === "done"){
+    doneColumn.appendChild(tempDiv);
+  } else {
+    alert('invalid status, cant add!');
+  }
+
+  deleteButton.addEventListener('click', function(e){
+    tempDiv.remove();
+  })
+
+  task.value = "";
+  selectedTags = [];
+  selectStatus.value = "none";  
+
+  document.querySelectorAll('.tags div').forEach(tag => {
+    tag.style.backgroundColor = "";
   });
 
-const addTaskButton = document
-  .querySelector("#add_task_button")
-  .addEventListener("click", (e) => {
-    if (tasks.task === "" || tasks.tags.length === 0 || tasks.category === "") {
-      alert("Please fill in all required fields!");
-    } else {
-      console.log("Current category:", tasks.category);
-      console.log("Current task:", tasks.task);
-      console.log("Current tags:", tasks.tags);
-      console.log(tasks);
-      const todoSection = document.querySelector(".todo");
-      const doingSection = document.querySelector(".doing");
-      const doneSection = document.querySelector(".done");
+});
 
-      if (tasks.category === "to_do") {
-        taskBox_to_do(todoSection);
-
-        tasks.task = "";
-        tasks.tags = [];
-        tasks.category = "";
-      } else if (tasks.category === "doing") {
-        taskBox_doing(doingSection);
-
-        tasks.task = "";
-        tasks.tags = [];
-        tasks.category = "";
-      } else {
-        taskBox_done(doneSection);
-
-        tasks.task = "";
-        tasks.tags = [];
-        tasks.category = "";
-      }
-    }
-  });
-
-function taskBox_to_do(todoSection) {
-  const taskBox = document.createElement("div");
-  taskBox.classList.add("taskCard");
-  const p = document.createElement("p");
-  p.innerHTML = tasks.task;
-
-  taskBox.appendChild(p);
-
-  tasks.tags.forEach((tag) => {
-    const tagg = document.createElement("span");
-    tagg.classList.add("task_box_tags");
-    tagg.innerHTML = tag;
-    taskBox.appendChild(tagg);
-  });
-
-  const deleteTask = document.createElement("button");
-  deleteTask.innerHTML = "Delete";
-
-  taskBox.appendChild(deleteTask);
-
-  todoSection.appendChild(taskBox);
-
-  deleteTask.addEventListener("click", (e) => {
-    taskBox.remove();
-  });
+function saveTaskstoLocalStorage(tasksArray) {
+  localStorage.setItem('todoTasks', JSON.stringify(tasksArray));
 }
 
-function taskBox_doing(doingSection) {
-  const taskBox = document.createElement("div");
-  taskBox.classList.add("taskCard");
-  const p = document.createElement("p");
-  p.innerHTML = tasks.task;
-
-  taskBox.appendChild(p);
-
-  tasks.tags.forEach((tag) => {
-    const tagg = document.createElement("span");
-    tagg.classList.add("task_box_tags");
-    tagg.innerHTML = tag;
-    taskBox.appendChild(tagg);
-  });
-
-  const deleteTask = document.createElement("button");
-  deleteTask.innerHTML = "Delete";
-
-  taskBox.appendChild(deleteTask);
-
-  doingSection.appendChild(taskBox);
-
-  deleteTask.addEventListener("click", (e) => {
-    taskBox.remove();
-  });
+function loadTasksFromLocalStorage(tasksArray){
+  const tasksString = localStorage.get('todoTasks');
+  if (tasksString){
+    return JSON.parse(tasksString);
+  }
+  return [];
 }
 
-function taskBox_done(doneSection) {
-  const taskBox = document.createElement("div");
-  taskBox.classList.add("taskCard");
-  const p = document.createElement("p");
-  p.innerHTML = tasks.task;
 
-  taskBox.appendChild(p);
 
-  tasks.tags.forEach((tag) => {
-    const tagg = document.createElement("span");
-    tagg.classList.add("task_box_tags");
-    tagg.innerHTML = tag;
-    taskBox.appendChild(tagg);
-  });
-
-  const deleteTask = document.createElement("button");
-  deleteTask.innerHTML = "Delete";
-
-  taskBox.appendChild(deleteTask);
-
-  doneSection.appendChild(taskBox);
-
-  deleteTask.addEventListener("click", (e) => {
-    taskBox.remove();
-  });
-}
+/*
+innerHTML,textContent,innerText
+*/

@@ -1,102 +1,107 @@
-body {
-  padding: 10px;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-header {
-  border-bottom: 1px solid rgb(204, 204, 204);
+
+header{
+  margin: 30px;
+  border-bottom: 1px solid black;
+}
+
+form{
   display: flex;
   justify-content: center;
-  padding: 10px;
-}
-
-form {
-  display: flex;
+  align-items: center;
   flex-direction: column;
+  padding: 30px;
 }
 
-form > input {
-  padding: 20px;
-  width: 600px;
+form input{
+  padding: 20px 40px;
   font-size: 1.4em;
-  height: auto;
   border-radius: 10px;
-  border: 1px solid gray;
+  border: 0.5px solid black;
+  min-width: 50%;
+  margin-bottom: 15px;
 }
 
-.taskInfo {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.tags {
-  display: flex;
-  gap: 20px;
-}
-
-.tag {
-  display: flex;
-  gap: 20px;
-}
-
-.tags > button, .tag > button {
-  border: 1px solid gray;
-  padding: 10px 20px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.tag > select {
-  padding: 10px 10px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-section {
+.tags-status-btn{
   display: flex;
   flex-direction: row;
-  height: 80vh;
-  justify-content: space-evenly;
-  gap: 20px;
-}
-
-section > div {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
+  width: 50%;
   align-items: center;
-  gap: 15px;
+  justify-content: space-between;
 }
 
-.taskCard {
-  border: 1px solid gray;
-  padding: 10px 20px;
-  width: 15em;
-  height: auto;
-  border-radius: 10px;
+.tags{
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  flex-direction: row;
 }
 
-.taskCard > button {
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.tag,
+#delete-btn{
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
-.task_box_tags {
+.status-btn{
   display: flex;
-  gap: 10px;
-  padding: 5px 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
 }
 
-.task_box_tags span {
-  background-color: #f0f0f0;
-  padding: 2px 8px;
-  border-radius: 3px;
-  font-size: 0.8em;
+#status{
+  border: 1px solid black;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+
+.add-task-btn{
+  border: 1px solid black;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+
+section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  min-height: 30em;
+}
+
+section .column{
+  padding: 10px;
+  min-width: 30%;
+  border-right: 1px solid black;
+}
+
+section h1{
+  margin-bottom: 10px;
+}
+
+.task-box{
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.task-box h3{
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.tags-deleteBtn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tags-container{
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
 }
