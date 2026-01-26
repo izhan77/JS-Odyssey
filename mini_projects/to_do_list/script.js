@@ -39,10 +39,6 @@ addTask.addEventListener('click', function(e){
 
   console.log(newTask);
 
-  const allTasks = loadTasksFromLocalStorage();
-  allTasks.push(newTask);
-  saveTaskstoLocalStorage(allTasks);
-
 
   const taskBox = `
           <h3>${newTask.task}</h3>
@@ -86,20 +82,6 @@ addTask.addEventListener('click', function(e){
   });
 
 });
-
-function saveTaskstoLocalStorage(tasksArray) {
-  localStorage.setItem('todoTasks', JSON.stringify(tasksArray));
-}
-
-function loadTasksFromLocalStorage(tasksArray){
-  const tasksString = localStorage.get('todoTasks');
-  if (tasksString){
-    return JSON.parse(tasksString);
-  }
-  return [];
-}
-
-
 
 /*
 innerHTML,textContent,innerText
