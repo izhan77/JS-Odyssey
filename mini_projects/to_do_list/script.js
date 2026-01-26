@@ -8,7 +8,7 @@ const tagColors = {
   html: '#FF6500',
   css: '#5DD3B6',
   javascript: '#FFD41D',
-  react: '#97A87A'
+  react: '#9caf7cff'
 };
 
 
