@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo app</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Todo App</h1>
+      <form action="#" method="post">
+        <div class="input-field">
+          <label for="task">Enter your task :</label>
+          <input
+            type="text"
+            name="task"
+            id="task"
+            placeholder="Completed Javascript"
+          />
+        </div>
+        <div class="tags-btn">
+          <div class="tags">
+            <button type="button" id="html">HTML</button>
+            <button type="button" id="css">CSS</button>
+            <button type="button" id="javascript">Javascript</button>
+            <button type="button" id="react">React</button>
+          </div>
+          <select name="status" id="status">
+            <option disabled selected>Select</option>
+            <option value="todo">Todo</option>
+            <option value="doing">Doing</option>
+            <option value="done">Done</option>
+          </select>
+          <div class="btn">
+            <button id="submit-btn" type="button">Enter Task +</button>
+          </div>
+        </div>
+      </form>
+    </header>
+
+    <section class="task-display">
+      <div class="section">
+        <h1>Todo</h1>
+        <section class="todo"></section>
+      </div>
+      <div class="section">
+        <h1>Doing</h1>
+        <section class="doing"></section>
+      </div>
+      <div class="section">
+        <h1>Done</h1>
+        <section class="done"></section>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>

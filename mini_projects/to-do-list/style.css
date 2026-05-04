@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #212121;
+  color: #ffffff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+header > h1 {
+  font-size: 3rem;
+}
+
+form {
+  background-color: white;
+  color: #212121;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-field > input {
+  padding: 10px 30px 10px 10px;
+  border-radius: 10px;
+  border: 0.5px solid gray;
+}
+
+.tags-btn {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.tags > button,
+.btn > button,
+.task-box-tags > span {
+  padding: 10px 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.task-display {
+  display: flex;
+  justify-content: space-between;
+  overflow-y: auto;
+  min-height: 100dvh;
+}
+
+.task-display > .section {
+  flex: 1;
+  border-right: 1px solid white;
+  padding: 20px;
+}
+
+.task-display > section > h1 {
+  font-style: italic;
+  padding-left: 10px;
+}
+
+.task {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.task-tags {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.task-tags > div {
+  border: 1px solid black;
+  padding: 10px 20px;
+}
+
+.task-box{
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.task-box-tags{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
